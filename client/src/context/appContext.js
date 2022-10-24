@@ -160,7 +160,7 @@ const AppProvider = ({ children }) => {
                 type: LOGIN_USER_SUCCESS,
                 payload: { user, location, token },
             })
-            addUserToLocalStorage({ user, token, location })
+            await addUserToLocalStorage({ user, token, location })
         } catch (err) {
             // console.log(err)
             dispatch({
@@ -183,7 +183,7 @@ const AppProvider = ({ children }) => {
                 type: SETUP_USER_SUCCESS,
                 payload: { user, location, token, alertText },
             })
-            addUserToLocalStorage({ user, token, location })
+            await addUserToLocalStorage({ user, token, location })
         } catch (err) {
             // console.log(err)
             dispatch({
@@ -209,14 +209,18 @@ const AppProvider = ({ children }) => {
             )
 
             // no token
-            const { user, location } = data
+            const { user, location, token } = data
 
             dispatch({
                 type: UPDATE_USER_SUCCESS,
                 payload: { user, location, token },
             })
 
-            addUserToLocalStorage({ user, location, token: initialState.token })
+            await addUserToLocalStorage({
+                user,
+                location,
+                token: initialState.token,
+            })
             setTimeout(() => {
                 hideDisplayAlert()
             }, 3000)

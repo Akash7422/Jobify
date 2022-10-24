@@ -25,7 +25,7 @@ const Profile = () => {
             return
         }
         updateUser({ name, email, lastName, location })
-        console.log("update User")
+        //console.log("update User")
     }
 
     return (
